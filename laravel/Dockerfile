@@ -17,9 +17,9 @@ RUN apt-get update && apt-get install -y  \
     supervisor
 
 # Install PHP extensions
-RUN pecl install excimer
 RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN pecl install excimer # for sentry
 
 # Install Node.js and Yarn
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
