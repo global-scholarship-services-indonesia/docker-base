@@ -11,14 +11,13 @@ RUN apt-get update && apt-get install -y  \
     libfontconfig1 \
     libxrender1 \
     libxext6 \
-    excimer \
     locales \
     zip \
     nginx \
     supervisor
 
 # Install PHP extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets excimer
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 # Install Node.js and Yarn
