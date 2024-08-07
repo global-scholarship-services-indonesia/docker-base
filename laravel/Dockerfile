@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y  \
     supervisor
 
 # Install PHP extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets excimer
+RUN pecl install excimer
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 # Install Node.js and Yarn
