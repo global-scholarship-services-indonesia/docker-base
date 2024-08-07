@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y  \
     excimer \
     locales \
     zip \
-    unzip \
     nginx \
     supervisor
 

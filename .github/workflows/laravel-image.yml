@@ -2,7 +2,8 @@ name: Build Laravel Base Image
 
 on:
   push:
-    paths: [ "laravel" ]
+    paths:
+      - "laravel/**"
 
 jobs:
   cd:
