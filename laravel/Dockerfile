@@ -26,7 +26,7 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
 # Install PNPM
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+RUN curl -fsSL https://get.pnpm.io/install.sh | bash -
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
