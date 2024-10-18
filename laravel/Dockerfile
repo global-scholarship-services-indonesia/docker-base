@@ -25,11 +25,8 @@ RUN pecl install excimer # for sentry
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt-get install -y nodejs
 
-# Install PNPM
-RUN npm install -g pnpm
-
-# Install dotenvx
-RUN pnpm add --global @dotenvx/dotenvx
+# Install PNPM and dotenvx
+RUN npm install -g pnpm @dotenvx/dotenvx
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
