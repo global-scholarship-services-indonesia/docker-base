@@ -21,12 +21,11 @@ RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN pecl install excimer # for sentry
 
-# Install Node.js and Yarn
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+# Install Node.js
 RUN apt-get install -y nodejs
 
-# Install PNPM and dotenvx
-RUN npm install -g pnpm @dotenvx/dotenvx
+# Install Bun
+RUN curl -fsSL https://bun.sh/install | bash
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
