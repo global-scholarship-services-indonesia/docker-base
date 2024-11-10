@@ -26,6 +26,9 @@ RUN apt-get install -y nodejs
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="$PATH:/root/.bun/bin"
+# Global bun installation
+ENV PATH="$PATH:/root/.bun/install/global/node_modules/.bin"
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
