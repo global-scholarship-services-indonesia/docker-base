@@ -17,9 +17,12 @@ RUN apt-get update && apt-get install -y  \
     supervisor
 
 # Install PHP extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN pecl install excimer # for sentry
+
+# Copy opcache config
+COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 # Install Node.js
 RUN apt-get install -y nodejs
