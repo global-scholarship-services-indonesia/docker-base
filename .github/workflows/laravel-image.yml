@@ -49,7 +49,7 @@ jobs:
         env:
           DSLIM_HTTP_PROBE: false
         with:
-          target: ${{ github.repository }}:laravel
+          target: ${{ github.repository }}/laravel:latest
           tag: "slim"
 
       # Dump the report
