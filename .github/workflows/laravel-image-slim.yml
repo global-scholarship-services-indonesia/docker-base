@@ -31,7 +31,6 @@ jobs:
       - uses: kitabisa/docker-slim-action@v1
         env:
           DSLIM_HTTP_PROBE: false
-          DSLIM_CONTINUE_AFTER: signal
         with:
           target: ghcr.io/${{ github.repository }}/laravel:main
           tag: "slim"
