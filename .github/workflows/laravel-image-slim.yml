@@ -1,10 +1,8 @@
-
 name: Build Laravel Base Image - Slim Version
 
 on:
   push:
     paths:
-      - "laravel/**"
       - ".github/workflows/laravel-image-slim.yml"
   workflow_run:
     workflows: ["Build Laravel Base Image"]
