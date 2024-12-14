@@ -29,7 +29,6 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          load: true
           images: ghcr.io/${{ github.repository }}/laravel
           flavor: |
             latest=false
