@@ -39,4 +39,4 @@ jobs:
         env:
           REPORT: ${{ steps.slim.outputs.report }}
 
-      - run: docker image push "${{ github.repository }}/laravel:slim"
+      - run: docker image push "ghcr.io/${{ github.repository }}/laravel:slim"
