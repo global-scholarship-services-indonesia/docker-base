@@ -33,7 +33,7 @@ jobs:
           DSLIM_HTTP_PROBE: false
           DSLIM_CONTINUE_AFTER: signal
         with:
-          target: ghcr.io/${{ github.repository }}/laravel:latest
+          target: ghcr.io/${{ github.repository }}/laravel:main
           tag: "slim"
 
       - run: echo "${REPORT}"
