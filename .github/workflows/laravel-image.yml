@@ -49,8 +49,13 @@ jobs:
         env:
           DSLIM_HTTP_PROBE: false
         with:
-          target: ${{ github.repository }}:latest
+          target: ${{ github.repository }}:laravel
           tag: "slim"
+
+      # Dump the report
+      - run: echo "${REPORT}"
+        env:
+          REPORT: ${{ steps.slim.outputs.report }}
 
       # Push to the registry
       - run: docker image push "${{ github.repository }}" --all-tags
