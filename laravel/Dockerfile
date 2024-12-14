@@ -16,13 +16,12 @@ RUN apt-get update && apt-get install -y  \
     zip \
     nginx \
     supervisor \
-    nodejs
-
-# Install PHP extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
-  && docker-php-ext-configure gd --with-freetype --with-jpeg \
-  && docker-php-ext-configure intl
-RUN pecl install excimer # for sentry
+    nodejs \
+    # Install PHP extensions
+    && docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure intl \
+    && pecl install excimer # for sentry
 
 # Copy opcache config
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
@@ -32,4 +31,4 @@ RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="$PATH:/root/.bun/bin:/root/.bun/install/global/node_modules/.bin"
 
 # Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2.25 /usr/bin/composer /usr/bin/composer
