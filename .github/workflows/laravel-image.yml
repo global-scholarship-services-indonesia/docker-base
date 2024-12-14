@@ -42,5 +42,8 @@ jobs:
         with:
           context: "{{defaultContext}}:laravel"
           push: true
+          cache-from: type=gha,scope=${{ github.ref_name }}-build
+          cache-to: type=gha,mode=max,scope=${{ github.ref_name }}-build
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          outputs: type=image,compression=zstd,compression-level=3
