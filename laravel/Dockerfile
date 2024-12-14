@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y  \
     nodejs
 
 # Install PHP extensions
-RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl
-  && docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
+  && docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-configure intl
 RUN pecl install excimer # for sentry
 
