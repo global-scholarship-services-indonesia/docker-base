@@ -40,22 +40,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:laravel"
-          push: false
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      # Slim it!
-      - uses: kitabisa/docker-slim-action@v1
-        env:
-          DSLIM_HTTP_PROBE: false
-        with:
-          target: ghcr.io/${{ github.repository }}/laravel:latest
-          tag: "slim"
-
-      # Dump the report
-      - run: echo "${REPORT}"
-        env:
-          REPORT: ${{ steps.slim.outputs.report }}
-
-      # Push to the registry
-      - run: docker image push "${{ github.repository }}" --all-tags
