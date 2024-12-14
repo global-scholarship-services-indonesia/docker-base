@@ -39,4 +39,4 @@ jobs:
         env:
           REPORT: ${{ steps.slim.outputs.report }}
 
-      - run: docker image push "${{ github.repository }}" --all-tags
+      - run: docker image push "${{ github.repository }}/laravel" --all-tags
