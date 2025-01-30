@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y  \
 
 # Copy opcache config
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
