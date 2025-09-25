@@ -16,12 +16,15 @@ RUN apt-get update && apt-get install -y  \
     zip \
     nginx \
     supervisor \
-    nodejs \
     # Install PHP extensions
     && docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure intl \
     && pecl install excimer # for sentry
+
+# Install nodejs
+RUN curl -o- https://fnm.vercel.app/install | bash
+RUN fnm install 22
 
 # Copy opcache config
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
