@@ -9,14 +9,14 @@ on:
 jobs:
   cd:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2404
     timeout-minutes: 30
     permissions:
       contents: read
       packages: write
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Setup Blacksmith Builder
+        uses: useblacksmith/setup-docker-builder@v1
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3
@@ -37,12 +37,10 @@ jobs:
             type=ref,event=branch
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: useblacksmith/build-push-action@v2
         with:
           context: "{{defaultContext}}:laravel"
           push: true
-          cache-from: type=gha,scope=${{ github.ref_name }}-build
-          cache-to: type=gha,mode=max,scope=${{ github.ref_name }}-build
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,compression=zstd,compression-level=3
