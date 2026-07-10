@@ -29,6 +29,7 @@ RUN fnm install 22
 # Copy opcache config
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
+COPY ./uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
