@@ -2,7 +2,7 @@
 FROM php:8.3.8-fpm AS build
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y  \
+RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     libpng-dev \
@@ -17,19 +17,18 @@ RUN apt-get update && apt-get install -y  \
     nginx \
     supervisor \
     # Install PHP extensions
-    && docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure intl \
+    && docker-php-ext-install gd pdo_mysql zip exif pcntl sockets opcache intl \
     && pecl install excimer # for sentry
 
-# Install nodejs
-RUN curl -o- https://fnm.vercel.app/install | bash
-RUN fnm install 22
+# Install Node.js 22 
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs
 
 # Copy opcache config
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
-COPY ./uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
